@@ -26,7 +26,11 @@ The resolution is reported to be **3.20Å**, this is the average value. We can t
 
 _Side note:_ The configuration L and D of the lysine in the peptide is so important (switch from agonist to and antagonist respectively)
 
-![test](./Test.png)
+
+
+
+
+
 
 
 
