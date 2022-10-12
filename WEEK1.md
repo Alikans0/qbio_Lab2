@@ -1,4 +1,3 @@
-
 # Monday 10/10/2022
 
 ## Get familiar with the model
@@ -40,7 +39,7 @@ Got introduced to multiple concepts:
 
 One approah is **metadynamics**, at $δt$, Gaussian potentials are dynamically placed on the potential energy landscape in order to flatten energy wells and reduce oversampling of local energy minima. This greatly accelerates the sampling of configuration space.
 
-![](./images/metadynamics.png) 
+ ![metadynamics](./images/metadynamics.png){ width="1" height="1" style="display: block; margin: 10 auto" }
 
 A sketch of the process of metadynamics. First the system evolves according to a normal dynamics, then a Gaussian potential is deposited (solid gray line). This lifts the system and modifies the free-energy landscape (dashed gray line) in which the dynamics evolves. After a while the sum of Gaussian potentials fills up the first metastable state and the system moves into the second metastable basin. After this the second metastable basin is filled, at this point, the system evolves in a flat landscape. The summation of the deposited bias (solid gray profile) provides a first rough negative estimate of the free-energy profile. [ref](https://parrinello.ethz.ch/research/metadynamics.html)
 
