@@ -32,6 +32,8 @@ _Side note:_ The configuration L and D of the lysine in the peptide is so import
 
 
 
+
+
 ## Discussion 
 Got introduced to multiple concepts: 
 - Calculations with Floating 
