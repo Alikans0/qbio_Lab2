@@ -38,7 +38,7 @@ Got introduced to multiple concepts:
 
 ### Calculations with Floating
 
-One approah is **metadynamics**, at $$δt$$, Gaussian potentials are dynamically placed on the potential energy landscape in order to flatten energy wells and reduce oversampling of local energy minima. This greatly accelerates the sampling of configuration space.
+One approah is **metadynamics**, at $δt$, Gaussian potentials are dynamically placed on the potential energy landscape in order to flatten energy wells and reduce oversampling of local energy minima. This greatly accelerates the sampling of configuration space.
 
 ![](./images/metadynamics.png) 
 
