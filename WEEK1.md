@@ -21,10 +21,12 @@ This model shows a lot of issues:
 - The model used [6KO5][10] as a template, which also has a problem since helix 5 shows a shift of half helix turn.   
 
 ### Using VMD, load density CPP4
-So when we try to fit [7F9Z][11] in the **density map **, the peptide does not fit well, and we notice that the **M213** in helix 5 is not in its place.   
+So when we try to fit [7F9Z][11] in the **density map ** , the peptide does not fit well, and we notice that the **M213** in helix 5 is not in its place.   
 The resolution is reported to be **3.20Å**, this is the average value. We can tell that the resolution in the whole model is so much better than in the ligand pocket, suggesting that the resolution is lower for the peptide. So the density map for the peptide is probably for the backbone, explaining the abnormal 3 cis peptide bonds when they tried to fit it with the side chains.  
 
 _Side note:_ The configuration L and D of the lysine in the peptide is so important (switch from agonist to and antagonist respectively)
+
+![][image-1]
 
 ## Discussion 
 Got introduced to multiple concepts: 
@@ -34,7 +36,7 @@ Got introduced to multiple concepts:
 - Harmonic potential
 - Morse potential 
 - Cutoff
-![][image-1]
+
 
 
 
@@ -55,4 +57,4 @@ Got introduced to multiple concepts:
 [10]:	https://www.rcsb.org/structure/6KO5
 [11]:	https://www.rcsb.org/structure/7F9Z
 
-[image-1]:	file:///.file/id=6571367.43553643 width=10 height=10
+[image-1]:	file:///.file/id=6571367.43553643
