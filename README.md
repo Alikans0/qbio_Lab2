@@ -2,8 +2,17 @@
 
 ### supervise by Nicolas Floquet and Maxime Louet, Ph.Ds.
 
-My work consists of proposing a model of the binding of GHRP6 to its receptor (GHSR), using Coarse-Grained and all-Atom modeling, and Cryo-EM density map. 
-A structure was deposed in the PDB ([7F9Z][1]) but seems to be completly wrong and presents multiple errors, specialy regarding the ligand.  
+My work consists of proposing a model of the binding of Growth Hormone-Releasing Peptide 6 (GHRP-6), a synthetic agonist of the ghrelin, to its receptor, Growth hormone secretagogue receptor(GHS-R), which is a G protein-coupled receptor.   
+To do so, I will be using Coarse-Grained and all-Atom modeling, and Cryo-EM density map.   
+A model was deposed in the PDB ([7F9Z][1]) but seems to be completely wrong and presents multiple errors, specially regarding the peptide.   
+
+In this repository, I will document my 2 months internship work, as well as ideas, encountered issues, meetings summaries, and perspectives.  
+
+You will find a notebook for each week, starting October 10th and ending December 15th. 
+
+
+
+
 
 
 
