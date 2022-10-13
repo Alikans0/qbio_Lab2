@@ -55,23 +55,43 @@ A sketch of the process of metadynamics. First the system evolves according to a
 
 
 
-
-
-
-
-
-
 # Tuesday 10/11/2022
 
+- Tried **Charmm Gui** (pdb reader) on chains R & C of [7F9Z](https://www.rcsb.org/structure/7F9Z).
 
+- Did not recognize residues of the peptide because of their weird annotation in the pdb.
 
+- I changed the names in the pdb file but still did not work. (don't know why)
 
+- Decided to try just chain R, but had an error at the end (could not retreive the RCSB sequence)
 
+- We thought it's maybe because of the missing residues (intracellular loop) but does not make so much sense, since Charmm Gui can usualy fill the missing residues.
 
+- We decided to use **Modeller**, to model the loop by homology. For that we had to get rid of ANISOU between ATOM in the pdb  (The ANISOU records present the anisotropic temperature factors.)
+
+- I opened the pdb structure in **VMD** and extrcted the coordinates for both chains R & D, and put them in a **.atm file** (similar to pdb but specific to modeller) cf. 7f9z.atm
+
+- Another input in the **.ali file**. In this file we put the sequence of the protein (from uniprot) and a template/s (sequence from pdb file) cf ali.ali 
+
+- Got 20 complete protein-peptide models.
+
+  
 
 # Wednesday  10/12/2022
 
+Morning: read the article
 
+Afternoon: chose a model, discussed Coarse-grain, Nicolas showed me how to align the model in the membrane and make a simulation with coarse-grain
+
+
+
+# Thursday  10/13/2022
+
+Morning: installed jupyter and conda and prepared an environment 
+
+afternoon: replicated what we did with nicolas yesterday
+
+# Friday  10/14/2022
 
 
 
