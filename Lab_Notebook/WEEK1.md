@@ -15,7 +15,7 @@ I first aligned all the models in Pymol, and compared them.
 
 ### Issues
 
-We are interested in [7F9Z](https://www.rcsb.org/structure/7F9Z) (see [Article][9]).  
+We are interested in [7F9Z](https://www.rcsb.org/structure/7F9Z) (see [Article](https://www.nature.com/articles/s41467-021-25364-2)).  
 
 This model shows a lot of issues:
 - The peptide has **3 Cis peptide bonds**!
@@ -39,7 +39,7 @@ Got introduced to multiple concepts:
 
 One approah is **metadynamics**, at $δt$, Gaussian potentials are dynamically placed on the potential energy landscape in order to flatten energy wells and reduce oversampling of local energy minima. This greatly accelerates the sampling of configuration space.
 
- ![metadynamics](./images/metadynamics.png)
+ ![metadynamics](../images/metadynamics.png)
 
 
 
@@ -62,4 +62,16 @@ A sketch of the process of metadynamics. First the system evolves according to a
 
 
 # Tuesday 10/11/2022
+
+
+
+
+
+
+
+# Wednesday  10/12/2022
+
+
+
+
 
