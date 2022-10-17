@@ -67,7 +67,7 @@ To implement PBC, the unit cell is surrounded by translated copies in all direct
 
 Two types of bonds are implemented:
 
-- standard harmonic bond _(Note: no factor $\frac{1}{2}$ in the potential)_:
+- standard harmonic bond _(Note: no factor \$\frac{1}{2}\$ in the potential)_:
 
  $$ U_{harm}(r)=k(r-r_{0})^2$$
 
