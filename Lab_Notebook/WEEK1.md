@@ -27,7 +27,7 @@ This model shows a lot of issues:
 Using VMD, load density CPP4:  
 
 So when we try to fit [7F9Z](https://www.rcsb.org/structure/7F9Z) in the **density map**, the peptide does not fit well, and we notice that the **M213** in helix 5 is not in its place.  
-The resolution is reported to be **3.20Å**, this is the average value. We can tell that the resolution in the whole model is so much better than in the ligand pocket, suggesting that the resolution is lower for the peptide. So the density map for the peptide is probably for the backbone, explaining the abnormal 3 cis peptide bonds when they tried to fit it with the side chains.  
+The resolution is reported to be **$3.20Å$**, this is the average value. We can tell that the resolution in the whole model is so much better than in the ligand pocket, suggesting that the resolution is lower for the peptide. So the density map for the peptide is probably for the backbone, explaining the abnormal 3 cis peptide bonds when they tried to fit it with the side chains.  
 
 _Side note:_ The configuration L and D of the lysine in the peptide is so important (switch from agonist to and antagonist respectively)
 
@@ -43,15 +43,39 @@ One approah is **metadynamics**, at $δt$, Gaussian potentials are dynamically p
 
 
 
+
+
 A sketch of the process of metadynamics. First the system evolves according to a normal dynamics, then a Gaussian potential is deposited (solid gray line). This lifts the system and modifies the free-energy landscape (dashed gray line) in which the dynamics evolves. After a while the sum of Gaussian potentials fills up the first metastable state and the system moves into the second metastable basin. After this the second metastable basin is filled, at this point, the system evolves in a flat landscape. The summation of the deposited bias (solid gray profile) provides a first rough negative estimate of the free-energy profile. [ref](https://parrinello.ethz.ch/research/metadynamics.html)
 
+### Periodic Boundary Conditions (PBC)
 
+Make it possible to approximate an infinite system by using a small part (unit cell). A unit cell in MD is usually referred to as periodic box.
 
-- NVT & NPT
-- PBD
-- Harmonic potential
-- Morse potential 
-- Cutoff
+![PBC](../images/pbc.png)
+
+To implement PBC, the unit cell is surrounded by translated copies in all directions to approximate an infinitely large system. When one molecule diffuses across the boundary of the simulation box it reappears on the opposite side. 
+
+### NVE, NVT & NPT
+
+**NVE:** constant number (N), volume (V), and energy (E); the sum of kinetic (KE) and potential energy (PE) is conserved, T and P are unregulated
+
+**NVT:** constant number (N), volume (V), and temperature (T); T is regulated via a thermostat, which typically adds a degree of freedom to the conserved Hamiltonian; for the CPT module in CHARMM, this is a piston whose KE and PE are included in the Hamiltonian; P is unregulated
+
+**NPT:** as for NVT, but pressure (P) is regulated; again, for the CPT module this is one or more pistons whose KE and PE are added to the Hamiltonian
+
+### Harmonic potential & Morse potential
+
+Two types of bonds are implemented:
+
+- standard harmonic bond _(Note: no factor $\frac{1}{2}$ in the potential)_:
+
+ $$ U_{harm}(r)=k(r-r_{0})^2$$
+
+- and Morse potential:
+
+$$U_{morse}(r)=D(1-e^{-\rho(r-r_{0})})^2$$
+
+### Cutoff
 
 
 
