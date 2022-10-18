@@ -55,6 +55,22 @@ Make it possible to approximate an infinite system by using a small part (unit c
 
 To implement PBC, the unit cell is surrounded by translated copies in all directions to approximate an infinitely large system. When one molecule diffuses across the boundary of the simulation box it reappears on the opposite side. 
 
+
+
+### Harmonic potential & Morse potential
+
+Two types of bonds are implemented:
+
+- standard harmonic bond _(Note: no factor $\frac{1}{2}$ in the potential)_:
+
+ $$ U_{harm}(r)=k(r-r_{0})^2$$
+
+- and Morse potential:
+
+$$U_{morse}(r)=D(1-e^{-\rho(r-r_{0})})^2$$
+
+
+
 ### NVE, NVT & NPT
 
 **NVE:** constant number (N), volume (V), and energy (E); the sum of kinetic (KE) and potential energy (PE) is conserved, T and P are unregulated
@@ -63,21 +79,11 @@ To implement PBC, the unit cell is surrounded by translated copies in all direct
 
 **NPT:** as for NVT, but pressure (P) is regulated; again, for the CPT module this is one or more pistons whose KE and PE are added to the Hamiltonian
 
-### Harmonic potential & Morse potential
 
-Two types of bonds are implemented:
-
-- standard harmonic bond _(Note: no factor $ \frac{1}{2} $ in the potential)_:
-
- $$ U_{harm}(r)=k(r-r_{0})^2$$
-
-- and Morse potential:
-
-$$U_{morse}(r)=D(1-e^{-\rho(r-r_{0})})^2$$
 
 ### Cutoff
 
-
+Cut-off distance in the canonical (NVT) ensemble plays little role in determining the equilibrium structure of fluid if the ensemble has a high density. However, pressures calculated in the same NVT ensembles strongly depend on the cut-off distance used. In the  isothermal–isobaric  (NPT) ensemble, cut-off distance plays a key role in determining fluid equilibrium structure, density and self-diffusion coefficient.
 
 # Tuesday 10/11/2022
 
