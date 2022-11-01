@@ -17,6 +17,10 @@ I first aligned all the models in Pymol, and compared them.
 
 We are interested in [7F9Z](https://www.rcsb.org/structure/7F9Z) (see [Article](https://www.nature.com/articles/s41467-021-25364-2)).  
 
+Peptide: **GHRP-6**
+
+![GHRP-6](../images/peptide.png)
+
 This model shows a lot of issues:
 - The peptide has **3 Cis peptide bonds**!
 
@@ -79,8 +83,6 @@ $$U_{morse}(r)=D(1-e^{-\rho(r-r_{0})})^2$$
 
 **NPT:** as for NVT, but pressure (P) is regulated; again, for the CPT module this is one or more pistons whose KE and PE are added to the Hamiltonian
 
-
-
 ### Cutoff
 
 Cut-off distance in the canonical (NVT) ensemble plays little role in determining the equilibrium structure of fluid if the ensemble has a high density. However, pressures calculated in the same NVT ensembles strongly depend on the cut-off distance used. In the  isothermal–isobaric  (NPT) ensemble, cut-off distance plays a key role in determining fluid equilibrium structure, density and self-diffusion coefficient.
@@ -99,7 +101,7 @@ Cut-off distance in the canonical (NVT) ensemble plays little role in determinin
 
 - We decided to use **Modeller**, to model the loop by homology. For that we had to get rid of ANISOU between ATOM in the pdb  (The ANISOU records present the anisotropic temperature factors.)
 
-- I opened the pdb structure in **VMD** and extrcted the coordinates for both chains R & D, and put them in a **.atm file** (similar to pdb but specific to modeller) cf. 7f9z.atm
+- I opened the pdb structure in **VMD** and extracted the coordinates for both chains R & D, and put them in a **.atm file** (similar to pdb but specific to modeller) cf. 7f9z.atm
 
 - Another input in the **.ali file**. In this file we put the sequence of the protein (from uniprot) and a template/s (sequence from pdb file) cf ali.ali 
 
@@ -109,19 +111,126 @@ Cut-off distance in the canonical (NVT) ensemble plays little role in determinin
 
 # Wednesday  10/12/2022
 
-Morning: read the article
+## Essential points of the article
+
+check ballesteros weinstein numbering.
+
+
+
+- Ghrelin receptor is characterized by its high basal activity, with approximately 50% of its maximal capacity in the absence of a ligand
+
+- hermostabilized BRIL at the N-terminus of the ghrelin receptor and applied the NanoBiT tethering strategy to improve complex stability and homogeneity
+
+- The complex structure of the G<sub>q</sub>-coupled ghrelin receptor bound to GHRP-6 was determined by cryo-EM to the resolutions of  3.2Å
+
+- The complex presents canonical folds of seven transmembrane segments with the TMD of the receptors surrounded by an annular detergent micelle mimicking the nat- ural phospholipid bilayer
+
+- GHRP-6 adopts an upside-down binding mode relative to ghrelin, with its C-terminus inserting into the helix bundle and its N-terminus facing the extracellular vestibule
+
+  
+
+Important residues: 
+
+- These mutations of ghrelin receptor decrease the basal activity 
+
+  - A204E		
+
+  - F279L
+
+- The binding pocket is bifurcated into two cavities by a salt bridge between
+
+  -  E124<sup>3.33</sup> 
+  -  R283<sup>6.55</sup> 
+
+- Cavity I offers a  hydrophobic environment comprising F279<sup>6.51</sup> , F309<sup>7.39</sup>, F312<sup>7.42</sup>, and Y313<sup>7.43</sup>, of which F279<sup>6.51</sup> and Y313<sup>7.43</sup> are closely related to the activity of GHRP-6
+  - accommodates Trp4P of GHRP-6 
+
+- cavity II offers a hydrophobic environment comprising I178<sup>4.60</sup>, L181<sup>4.63</sup>, and F286<sup>6.58</sup>
+  - Occupied by D-Phe<sup>5P</sup>
+  - D-Phe<sup>5P</sup> forms an extra cation-π interaction with R283<sup>6.55</sup> 
+
+- impair activities of GHRP-6
+  - alanine substitutions of I178<sup>4.60</sup>, L181<sup>4.63</sup>, and F286<sup>6.58</sup> all significantly impair activities of GHRP-6, these residues make distinct extents of contributions.
+  - In contrast to ghrelin, replacement of I178<sup>4.60</sup> or L181<sup>4.63</sup> by alanine demonstrates a more remarkable decreased GHRP-6’s activity thanF286<sup>6.58</sup>
+
+- D-Trp2P forms an edge-to-face packing with Trp<sup>4P</sup> and establishes a stabilizing intramolecular hydrophobic network with the side-chain of Lys<sup>6P</sup> 
+- the side-chain of  Lys<sup>6P</sup>  points to TM2 and forms a stabilizing salt bridge with D99<sup>2.60</sup>,
+
+## Discussion
 
 Afternoon: chose a model, discussed Coarse-grain, Nicolas showed me how to align the model in the membrane and make a simulation with coarse-grain
 
+### Coasre-grain
 
+**Coarse-grained modeling**, **coarse-grained models**, aim at simulating the behaviour of complex systems using their coarse-grained (simplified) representation.  
+
+1 particule (bead) ≈ 3 heavy atoms   
+
+diffusion 8 to 10x faster  
+
+since we have beads and not atoms, we can’t define a SS (no $\Phi$ and $\psi$ angles) so we use Martini force field that adds a type of elastics to maintain the initial structure. This is applied only on the Backbone, no Side Chains (9Å).  
+
+If we want to keep a configuration cis or trans, we should put a contrain in modeller:  
+
+0° for cis and 180° for trans  
+
+### Chose the model
+
+We decided to work with model 9 since it’s the one that has the intracellular loop in the continuity of the helices and to avoid contact with other regions of the receptor.  
+
+We removed the begining and the end of the sequence (the part that we modeled to see that it is a mess)  
+
+we started the sequence at residue 40 (coarse-grain doesn't like to have a proline at the beginning) and ended it at residue 337  
+
+### Align the model in the membrane
+
+Use the script (draw_implicit.tcl) in vmd to draw the membrane  
+
+Display in orthographic  
+
+mouse  &rarr; mode  &rarr; molecule (and swipe the molicule to allign it in the membrane in XY)  
+
+if we want to move the peptide outside the receptor: mouse  &rarr; mode  &rarr; fragment  
+
+When I finish preparing the system: file &rarr; save trajectory &rarr; atoms ALL &rarr; and rename *alligned   
+
+### Simulation:
+
+discuss parameters (add later)
 
 # Thursday  10/13/2022
 
+## Conda and Jupyter
+
 Morning: installed jupyter and conda and prepared an environment 
+
+## My first CG simulation
+
+The one that we did with Nicolas yesterday did not work quite well:  
+
+since the peptide is so hydrophobic, it attached to the membrane and did not go in the binding pocket. So we decided to keep the peptide in the receptor.
 
 afternoon: replicated what we did with nicolas yesterday
 
+To automate the simulation, I wrote a Jupyter Notebook where I put the inputs files and run it. (cg_pypeline.ipynb) 
+
 # Friday  10/14/2022
+
+## Discussion
+
+### OPM?
+
+### QMMM?
+
+### Reimaging (center the receptor)
+
+### Create index
+
+### Load multiple trajectories
+
+
+
+
 
 
 
