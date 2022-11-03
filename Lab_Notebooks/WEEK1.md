@@ -212,7 +212,7 @@ since the peptide is so hydrophobic, it attached to the membrane and did not go 
 
 afternoon: replicated what we did with nicolas yesterday
 
-To automate the simulation, I wrote a Jupyter Notebook where I put the inputs files and run it. (cg_pypeline.ipynb) 
+To automate the simulation, I wrote a Jupyter Notebook where I put the inputs files and run it. (cg_pipeline.ipynb) 
 
 # Friday  10/14/2022
 
