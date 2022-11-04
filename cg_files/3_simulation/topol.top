@@ -1,0 +1,18 @@
+#include "martini_v3.0.0.itp"
+#include "martini_v3.0_lab_nf.itp"
+#include "molecule_0.itp"
+#include "molecule_1.itp"
+
+[ system ]
+; name
+Protein in INSANE! Membrane UpperLeaflet>POPC=100.0 LowerLeaflet>POPC=100.0
+
+[ molecules ]
+; name  number
+molecule_0 1
+molecule_1 1
+POPC           122
+POPC           123
+W             4889
+NA+             46
+CL-             61
