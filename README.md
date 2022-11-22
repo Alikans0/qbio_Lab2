@@ -1,6 +1,6 @@
 # This is a Lab notebook repository for my Lab2 internship at IBMM
 
-### supervise by Nicolas Floquet and Maxime Louet, Ph.Ds.
+### Supervise by Nicolas Floquet and Maxime Louet, Ph.Ds.
 
 My work consists of proposing a model of the binding of Growth Hormone-Releasing Peptide 6 (GHRP-6), a synthetic agonist of the ghrelin, to its receptor, Growth hormone secretagogue receptor(GHS-R), which is a G protein-coupled receptor.   
 To do so, I will be using Coarse-Grained and all-Atom modeling, and Cryo-EM density map.   
@@ -8,7 +8,9 @@ A model was deposed in the PDB ([7F9Z][1]) but seems to be completely wrong and 
 
 In this repository, I will document my 2 months internship work, as well as ideas, encountered issues, meetings summaries, and perspectives.  
 
-You will find a notebook for each week, starting October 10th and ending December 15th. 
+You will find a notebook that helps you understand what I have done and serves as a support for my pipelines.
+
+October 10th - December 15th. 
 
 
 
