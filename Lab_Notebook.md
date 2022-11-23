@@ -19,7 +19,7 @@ We are interested in [7F9Z](https://www.rcsb.org/structure/7F9Z) (see [Article](
 
 Peptide: **GHRP-6**
 
-![GHRP-6](../images/peptide.png)
+![GHRP-6](./images/peptide.png)
 
 This model shows a lot of issues:
 - The peptide has **3 Cis peptide bonds**!
@@ -43,7 +43,7 @@ Got introduced to multiple concepts:
 
 One approah is **metadynamics**, at $δt$, Gaussian potentials are dynamically placed on the potential energy landscape in order to flatten energy wells and reduce oversampling of local energy minima. This greatly accelerates the sampling of configuration space.
 
- ![metadynamics](../images/metadynamics.png)
+ ![metadynamics](./images/metadynamics.png)
 
 
 
@@ -55,7 +55,7 @@ A sketch of the process of metadynamics. First the system evolves according to a
 
 Make it possible to approximate an infinite system by using a small part (unit cell). A unit cell in MD is usually referred to as periodic box.
 
-![PBC](../images/pbc.png)
+![PBC](./images/pbc.png)
 
 To implement PBC, the unit cell is surrounded by translated copies in all directions to approximate an infinitely large system. When one molecule diffuses across the boundary of the simulation box it reappears on the opposite side. 
 
@@ -65,13 +65,17 @@ To implement PBC, the unit cell is surrounded by translated copies in all direct
 
 Two types of bonds are implemented:
 
-- standard harmonic bond _(Note: no factor $\frac{1}{2}$ in the potential)_:
+- standard harmonic bond _(Note: no factor $ \frac{1}{2} $ in the potential)_:
 
- $$ U_{harm}(r)=k(r-r_{0})^2$$
+$$
+U_{harm}(r)=k(r-r_{0})^2
+$$
 
 - and Morse potential:
 
-$$U_{morse}(r)=D(1-e^{-\rho(r-r_{0})})^2$$
+$$
+U_{morse}(r)=D(1-e^{-\rho(r-r_{0})})^2
+$$
 
 
 
@@ -222,11 +226,233 @@ To automate the simulation, I wrote a Jupyter Notebook where I put the inputs fi
 
 ### QMMM?
 
-### Reimaging (center the receptor)
-
-### Create index
-
 ### Load multiple trajectories
+
+
+
+# Monday  10/17/2022
+
+## Seminar (Justine)
+
+## Discussion
+
+### Index the structure (make_ndx)
+
+### Reimaging/Center (trjconv)
+
+### Align
+
+### Clustering
+
+# Tuesday  10/18/2022
+
+
+
+# Wednesday  10/19/2022
+
+## Discussion
+
+### VMD visualization
+
+### RMSD
+
+### Distance, bad variable for clustering
+
+### PMF?
+
+
+
+# Thursday 10/20/2022
+
+
+
+# Friday 10/21/2022
+
+
+
+# iGEM Week
+
+
+
+# Wednesday 11/2/2022
+
+
+
+# Thursday 11/3/2022
+
+All my simulations are wrong, forgot to remove the charge on N-ter
+
+# Friday 11/4/2022
+
+Started new simus
+
+# Workshop Week
+
+
+
+# Monday  11/14/2022
+
+# Tuesday  11/15/2022
+
+# Wednesday 11/16/2022
+
+# Thursday  11/17/2022
+
+# Friday 11/18/2022
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Monday  11/21/2022
+
+Finally managed to get the most relevant cluster
+
+# Tuesday  11/22/2022
+
+
+
+salut, ali, tu pourrais essayer d'installer gromacs + densfit sur  ta machine stp ? Tu peux aussi faire le tutoriel de MDFF avec VMD. C'est simple à installer et à comprendre. Je suis dispo en visio pour  discuter si besoin
+
+https://www.ks.uiuc.edu/Training/Tutorials/science/mdff/tutorial_mdff-html/
+
+https://www.mpinat.mpg.de/grubmueller/densityfitting
+
+
+
+
+
+
+
+tu peux aussi essayer de remapper un modèle en tout atomes.
+
+En local il faut utiliser initram.sh dispo sur le site de martini. Sinon, essayes avec charmm-gui
+
+http://cgmartini.nl/index.php/tools2/resolution-transformation
+
+
+
+
+
+[Automated cryo-EM structure refinement using correlation-driven molecular dynamics](https://pure.mpg.de/rest/items/item_3031462_3/component/file_3035577/content)  
+
+[Using Molecular Simulation to Model High-Resolution Cryo-EM Reconstructions](https://www.sciencedirect.com/science/article/abs/pii/S0076687915001846?via%3Dihub)
+
+
+
+check [this tool](https://smog-server.org/extension/MDfit.html)
+
+and also gromaps
+
+# Wednesday 23/19/2022
+
+[CG to atomistic](https://pubs.acs.org/doi/full/10.1021/ct400617g)
+
+
+
+align2sels 3 0 0 "name CA and resid 40 to 241 257 to 335 and chain R" "name BB and resid 40 to 241 257 to 335"
+
+
+
+
+
+GROMACS COMPILATION
+
+cmake .. -DGMX_BUILD_OWN_FFTW=ON -DCMAKE_C_COMPILER=/usr/bin/gcc-6 -DCMAKE_CXX_COMPILER=/usr/bin/g++-6 -DGMX_BINARY_SUFFIX=_gromaps
+
+make -j 16
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Thursday  11/24/2022
+
+# Friday 11/25/2022
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
