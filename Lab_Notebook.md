@@ -386,11 +386,21 @@ align2sels 3 0 0 "name CA and resid 40 to 241 257 to 335 and chain R" "name BB a
 
 GROMACS COMPILATION
 
-cmake .. -DGMX_BUILD_OWN_FFTW=ON -DCMAKE_C_COMPILER=/usr/bin/gcc-6 -DCMAKE_CXX_COMPILER=/usr/bin/g++-6 -DGMX_BINARY_SUFFIX=_gromaps
+cmake .. -DGMX_BUILD_OWN_FFTW=ON -DCMAKE_C_COMPILER=/usr/bin/gcc-6 -DCMAKE_CXX_COMPILER=/usr/bin/g++-6 -DGMX_BINARY_SUFFIX=_gromaps 
 
 make -j 16
 
 
+
+DENSFIT
+
+cmake ..  -DCMAKE_EXE_LINKER_FLAGS=-L/home/ali/gromacs_mp/ccp4-8.0/lib:$LD_LIBRARY_PATH -DCMAKE_C_FLAGS="-I $CCP4INC" -DCMAKE_CXX_FLAGS="-I $CCP4INC"  -DCMAKE_C_COMPILER=/usr/bin/gcc-7 -DGMX_BUILD_OWN_FFTW=ON
+
+
+
+
+
+cmake ..  -DCMAKE_EXE_LINKER_FLAGS=-L/home/ali/gromacs_mp/ccp4-8.0/lib:$LD_LIBRARY_PATH -DCMAKE_C_FLAGS="-I $CCP4INC" -DCMAKE_CXX_FLAGS="-I $CCP4INC"  -DCMAKE_C_COMPILER=/usr/bin/gcc-6 -DCMAKE_CXX_COMPILER=/usr/bin/g++-6 -DGMX_BUILD_OWN_FFTW=ON -DGMX_BUILD_OWN_FFTW=ON
 
 
 
