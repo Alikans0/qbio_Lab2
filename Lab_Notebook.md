@@ -340,19 +340,17 @@ Finally managed to get the most relevant cluster
 
 
 
-salut, ali, tu pourrais essayer d'installer gromacs + densfit sur  ta machine stp ? Tu peux aussi faire le tutoriel de MDFF avec VMD. C'est simple à installer et à comprendre. Je suis dispo en visio pour  discuter si besoin
-
-https://www.ks.uiuc.edu/Training/Tutorials/science/mdff/tutorial_mdff-html/
+essayer d'installer gromacs + densfit .
 
 https://www.mpinat.mpg.de/grubmueller/densityfitting
 
+le tutoriel de MDFF avec VMD. 
+
+https://www.ks.uiuc.edu/Training/Tutorials/science/mdff/tutorial_mdff-html/
 
 
 
-
-
-
-tu peux aussi essayer de remapper un modèle en tout atomes.
+essayer de remapper un modèle en tout atomes.
 
 En local il faut utiliser initram.sh dispo sur le site de martini. Sinon, essayes avec charmm-gui
 
@@ -386,7 +384,9 @@ align2sels 3 0 0 "name CA and resid 40 to 241 257 to 335 and chain R" "name BB a
 
 GROMACS COMPILATION
 
+```bash
 cmake .. -DGMX_BUILD_OWN_FFTW=ON -DCMAKE_C_COMPILER=/usr/bin/gcc-6 -DCMAKE_CXX_COMPILER=/usr/bin/g++-6 -DGMX_BINARY_SUFFIX=_gromaps 
+```
 
 make -j 16
 
@@ -400,43 +400,73 @@ cmake ..  -DCMAKE_EXE_LINKER_FLAGS=-L/home/ali/gromacs_mp/ccp4-8.0/lib:$LD_LIBRA
 
 
 
-cmake ..  -DCMAKE_EXE_LINKER_FLAGS=-L/home/ali/gromacs_mp/ccp4-8.0/lib:$LD_LIBRARY_PATH -DCMAKE_C_FLAGS="-I $CCP4INC" -DCMAKE_CXX_FLAGS="-I $CCP4INC"  -DCMAKE_C_COMPILER=/usr/bin/gcc-6 -DCMAKE_CXX_COMPILER=/usr/bin/g++-6 -DGMX_BUILD_OWN_FFTW=ON -DGMX_BUILD_OWN_FFTW=ON
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```bash
+cmake ..  -DCMAKE_EXE_LINKER_FLAGS=-L/home/ali/gromacs_mp/ccp4-8.0/lib:$LD_LIBRARY_PATH -DCMAKE_C_FLAGS="-I $CCP4INC" -DCMAKE_CXX_FLAGS="-I $CCP4INC"  -DCMAKE_C_COMPILER=/usr/bin/gcc-6 -DCMAKE_CXX_COMPILER=/usr/bin/g++-6 -DGMX_BUILD_OWN_FFTW=ON 
+```
 
 
 
 # Thursday  11/24/2022
+
+Try again installing gromacs + densfit
+
+```bash
+export LD_LIBRARY_PATH=/home/ali/gromacs_mp/ccp4-8.0/lib:$LD_LIBRARY_PATH
+```
+
+```bash
+CCP4INC=/home/ali/gromacs_mp/ccp4-8.0/include/ccp4/
+```
+
+```bash
+cmake .. \
+-DCMAKE_EXE_LINKER_FLAGS=-L/home/ali/gromacs_mp/ccp4-8.0/lib \
+-DCMAKE_C_FLAGS="-I $CCP4INC" \
+-DCMAKE_CXX_FLAGS="-I $CCP4INC" \
+-DCMAKE_C_COMPILER=/usr/bin/gcc-6 \
+-DCMAKE_CXX_COMPILER=/usr/bin/g++-6 \
+-DGMX_BUILD_OWN_FFTW=ON \
+-DGMX_BINARY_SUFFIX=_df 
+
+```
+
+```bash
+make -j 16
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Friday 11/25/2022
 
