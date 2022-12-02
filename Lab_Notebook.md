@@ -286,6 +286,10 @@ All my simulations are wrong, forgot to remove the charge on N-ter
 
 Started new simus
 
+how did I remove the charge?
+
+
+
 # Workshop Week
 
 
@@ -385,7 +389,11 @@ align2sels 3 0 0 "name CA and resid 40 to 241 257 to 335 and chain R" "name BB a
 GROMACS COMPILATION
 
 ```bash
-cmake .. -DGMX_BUILD_OWN_FFTW=ON -DCMAKE_C_COMPILER=/usr/bin/gcc-6 -DCMAKE_CXX_COMPILER=/usr/bin/g++-6 -DGMX_BINARY_SUFFIX=_gromaps 
+cmake ..\
+-DGMX_BUILD_OWN_FFTW=ON \
+-DCMAKE_C_COMPILER=/usr/bin/gcc-6 \
+-DCMAKE_CXX_COMPILER=/usr/bin/g++-6 \
+-DGMX_BINARY_SUFFIX=_gromaps 
 ```
 
 make -j 16
@@ -436,6 +444,87 @@ make -j 16
 
 
 
+For gromaps: (this works)
+
+```bash
+cmake .. \
+-DGMX_BUILD_OWN_FFTW=ON \
+-DREGRESSIONTEST_DOWNLOAD=OFF \
+-DGMX_BUILD_UNITTESTS=ON \
+-DGMX_GPU=OFF \
+-DCMAKE_C_COMPILER=/usr/bin/gcc-7 \
+-DREGRESSIONTEST_PATH=/home/michael/PROGRAMMES/gromacs-2019.1/build/tests/regressiontests-2019.1/ \
+-DCMAKE_CXX_COMPILER=/usr/bin/g++-7
+```
+
+# Monday 11/28/2022
+
+make [CG2AT2](https://github.com/owenvickery/cg2at) work.
+
+stop and try to install gromaps again (worked),  updated the command from last week
+
+
+
+# Wednesday 30/19/2022
+
+Depuis hier soir j'ai planché sur comment changer les coordonnées d'une carte de densité pour l'aligner sur nos modèles en MD.
+
+Voici la procédure.
+
+Nicolas
+
+il faut créer un modèle aligné et non aligné sur la carte (le deuxième est aligné en xyz pour fitter avec la membrane)
+Il faut aligner les deux modèles (celui non aligné sur la membrane sur  l'autre) et enregistrer les infos de la matrice de transformation 
+
+Il faut ensuite appliquer cette matrice de transformation à la carte pour l'aligner sur le modèle utilisé pour les calculs
+On peut utiliser l'outil VOLTOOL dans VMD (il faut installer la dernière version de VMD).
+
+En utilisant le script align2.tcl : 
+
+proc align { molId selText molIdRef } {
+  set all [atomselect $molId "all"]
+  set ref [atomselect $molIdRef $selText]
+  set actuel [atomselect $molId $selText]
+  set trans_mat [measure fit $actuel $ref]
+  puts "$trans_mat"
+  $all move $trans_mat
+}
+
+je fait (en tcl dans vmd) align 0 "name CA" 1 avec l'objet 0 le modele non aligné sur la membrane et l'objet 1 le modèle aligné sur la membrane
+Le script me donne :
+{0.1835557222366333 0.6410499811172485 -0.745226263999939 84.7039794921875}  {-0.9673156142234802 0.252715140581131 -0.020870547741651535  88.53860473632813} {0.17495089769363403 0.7246999144554138  0.6664849519729614 -156.47666931152344} {0.0 0.0 0.0 1.0}
+
+
+C'est la matrice de transformation qu'il faut appliquer à la carte.
+dans la doc de voltool on peut lire : move -mat 4x4 transform matrix [-i  input density map] [-mol molid ] [ -vol volume ID] [-o output file]:  apply specified 4x4 transformation matrix to density 
+
+je fais donc :
+
+voltool move -mat {{0.1835557222366333 0.6410499811172485 -0.745226263999939  84.7039794921875} {-0.9673156142234802 0.252715140581131  -0.020870547741651535 88.53860473632813} {0.17495089769363403  0.7246999144554138 0.6664849519729614 -156.47666931152344} {0.0 0.0 0.0  1.0}} -i emd_31501.ccp4 -o map_aligned.dx
+
+la carte en.dx est alignée sur le modèle de départ de la dynamique, donc  avec le plan de la membrane. On peut donc l'utiliser comme contrainte  pour fitter / scorer des modèles issus de MD.
+
+Normalement on peut y appliquer un masque pour ne garder que la partie qui nous  intéresse, je vais regarder ça cet après midi (avec le même outil  voltool de gromacs).
+
+
+
+
+
+
+
+```tcl
+source align_2selections.tcl
+```
+
+```tcl
+align2sels 0 1 0 "name BB and resid 40 to 241 257 to 335" "name CA and resid 40 to 241 257 to 335 and chain R"
+```
+
+{0.18988360464572906 0.6351232528686523 -0.7487073540687561 43.49410629272461} {-0.9664700031280518 0.2551766037940979 -0.028646977618336678 124.29756927490234} {0.17285823822021484 0.7290427684783936 0.6622813940048218 -96.94597625732422} {0.0 0.0 0.0 1.0}
+
+```tcl
+voltool move -mat {{0.18988360464572906 0.6351232528686523 -0.7487073540687561 43.49410629272461} {-0.9664700031280518 0.2551766037940979 -0.028646977618336678 124.29756927490234} {0.17285823822021484 0.7290427684783936 0.6622813940048218 -96.94597625732422} {0.0 0.0 0.0 1.0}} -i /home/ali/qbio_Lab2/pdb_structures/emd_31501.ccp4 -o map_aligned.dx
+```
 
 
 
@@ -445,54 +534,17 @@ make -j 16
 
 
 
+```tcl
+set sel [atomselect top "name CA and within 5 of (resid 367 to 372)"]
+```
 
+```tcl
+measure minmax $sel
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Friday 11/25/2022
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```tcl
+voltool crop -amt {{26.576316833496094 56.31255340576172 11.772480010986328} {35.10041046142578 63.75132751464844 29.43816375732422}} -mol 7 -o test.dx
+```
 
 
 
