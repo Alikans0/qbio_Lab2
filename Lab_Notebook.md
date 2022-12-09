@@ -382,7 +382,7 @@ and also gromaps
 
 align2sels 3 0 0 "name CA and resid 40 to 241 257 to 335 and chain R" "name BB and resid 40 to 241 257 to 335"
 
-
+align2sels 3 0 0 "name BB and resid 20 to 710" "name CA and resid 20 to 710" 
 
 
 
