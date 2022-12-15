@@ -1,0 +1,32 @@
+Hi there, hope you're having a good day!
+
+in this folder you'll find:
+
+	-MODELLER:
+what i used to build the missing loop of the ghrelin receptor
+
+	-nicolas_simu:
+the first simu that i have ever assisted! (done on nicola's machine, just to show me)
+
+	-cg_files:
+needed files to run the cg simulations
+
+	-cg_simulation:
+all 10µs and read every ns
+-old_simu: cg simulations before we remove the charge on N-ter for the peptide
+-clusters_5frames: the first 5frames of each cluster of each new_simu concatenated in a trajectory  
+-new_simux
+
+	-bead_type:
+use martinize with neutral ter (flag -nt) just to see what type of bead to change in the .gro file to remove the charge on N-ter
+ 	
+	-aa_simulations:
+the one and only all-atom simulation that i did, I built the system with charmm-gui 
+
+	-lab_notebook:
+check my github for the updated version
+
+	-RELAXIN:
+check README there
+
+
